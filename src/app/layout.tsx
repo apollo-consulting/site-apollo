@@ -1,33 +1,45 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// 1. IMPORTAMOS O LOCALFONT
+import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Header from "@/components/Header";
 import { Github, Linkedin, Instagram } from "lucide-react";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// 2. CONFIGURAMOS A FONTE GRIFT
+const grift = localFont({
+  src: [
+    {
+      path: './fonts/Grift-Regular.otf', // Caminho do arquivo (ajuste o nome se precisar)
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Grift-Bold.otf',    // Caminho do arquivo Bold
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-grift', // Nome da variável para o Tailwind
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "Apollo Consultoria",
   description: "Data, Automation & Development",
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-slate-200 flex flex-col min-h-screen`}>
+      {/* 3. APLICAMOS A VARIÁVEL NO BODY */}
+      <body className={`${grift.variable} font-sans antialiased bg-slate-950 text-slate-200 flex flex-col min-h-screen`}>
         
-        {/* O Provider envolve todo o site */}
         <LanguageProvider>
-          
           <Header />
-
           <main className="flex-grow pt-16">
             {children}
           </main>
-
-          {/* Footer (Pode ser componentizado depois) */}
+          
           <footer className="border-t border-white/5 bg-slate-900 py-12 text-sm text-slate-400">
             <div className="container mx-auto grid gap-8 px-6 md:grid-cols-4">
               <div>
@@ -44,7 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
           </footer>
-
         </LanguageProvider>
 
       </body>

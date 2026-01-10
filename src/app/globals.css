@@ -5,10 +5,12 @@
   --foreground: #171717;
 }
 
+/* AQUI É A MÁGICA DO TAILWIND v4 */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* Mudei aqui de var(--font-geist-sans) para var(--font-grift) */
+  --font-sans: var(--font-grift); 
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,5 +24,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Mudei aqui para usar a variável da Grift */
+  font-family: var(--font-grift), Arial, Helvetica, sans-serif;
 }
