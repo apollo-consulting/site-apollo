@@ -3,7 +3,7 @@ export const pt = {
   nav: {
     home: "Início",
     about: "Quem Somos",
-    portfolio: "Portfolio",
+    portfolio: "Serviços",
     contact: "Contato"
   },
   // ---------- HERO ----------

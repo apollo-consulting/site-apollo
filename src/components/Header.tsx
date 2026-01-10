@@ -34,9 +34,9 @@ export default function Header() {
         {/* Navegação Desktop */}
         <nav className="hidden md:flex gap-8 text-sm font-medium items-center">
           <Link href="/" className="hover:text-blue-400 transition-colors">{t.nav.home}</Link>
-          <Link href="/quem-somos" className="hover:text-blue-400 transition-colors">{t.nav.about}</Link>
-          <Link href="/portfolio" className="hover:text-blue-400 transition-colors">{t.nav.portfolio}</Link>
-          <Link href="/contato" className="hover:text-blue-400 transition-colors">{t.nav.contact}</Link>
+          <Link href="/about" className="hover:text-blue-400 transition-colors">{t.nav.about}</Link>
+          <Link href="/services" className="hover:text-blue-400 transition-colors">{t.nav.portfolio}</Link>
+          <Link href="/contact" className="hover:text-blue-400 transition-colors">{t.nav.contact}</Link>
           
           <button 
             onClick={toggleLanguage}
