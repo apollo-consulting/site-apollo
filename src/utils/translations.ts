@@ -44,9 +44,9 @@ export const translations = {
     hero: {
       badge: "Inovando o Futuro",
       title_start: "Nós construímos a",
-      title_highlight: "Espinha Dorsal Digital",
+      title_highlight: "Base Digital",
       title_end: "do seu negócio.",
-      description: "Especializados em Arquitetura de Dados robusta, Automação Inteligente e Software de Alta Performance.",
+      description: "Especializados em Arquitetura de Dados, Automação Inteligente e Software de Alta Performance.",
       cta_primary: "Falar com Especialista",
       cta_secondary: "Ver Portfólio",
     },
