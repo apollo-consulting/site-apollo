@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
-// 1. IMPORTAMOS O LOCALFONT
 import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Header from "@/components/Header";
 import { Github, Linkedin, Instagram } from "lucide-react";
 
-// 2. CONFIGURAMOS A FONTE GRIFT
+// Configuração da Fonte Grift
 const grift = localFont({
   src: [
     {
-      path: './fonts/Grift-Regular.otf', // Caminho do arquivo (ajuste o nome se precisar)
+      path: './fonts/Grift-Regular.otf', // Verifique se o nome do arquivo está exato
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/Grift-Bold.otf',    // Caminho do arquivo Bold
+      path: './fonts/Grift-Bold.otf',
       weight: '700',
       style: 'normal',
     },
   ],
-  variable: '--font-grift', // Nome da variável para o Tailwind
+  variable: '--font-grift',
   display: 'swap',
 });
 
@@ -28,15 +27,24 @@ export const metadata: Metadata = {
   title: "Apollo Consultoria",
   description: "Data, Automation & Development",
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="scroll-smooth">
-      {/* 3. APLICAMOS A VARIÁVEL NO BODY */}
+      {/* Aplicamos a fonte variável no body */}
       <body className={`${grift.variable} font-sans antialiased bg-slate-950 text-slate-200 flex flex-col min-h-screen`}>
         
+        {/* O LanguageProvider deve envolver TUDO dentro do body */}
         <LanguageProvider>
+          
           <Header />
-          <main className="flex-grow pt-16">
+          
+          {/* O erro provavelmente estava aqui por falta de fechamento correto */}
+          <main className="grow pt-16">
             {children}
           </main>
           
@@ -49,15 +57,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h4 className="mb-4 font-semibold text-white">Social</h4>
                 <div className="flex gap-4">
-                  <Github className="h-5 w-5 hover:text-white cursor-pointer" />
-                  <Linkedin className="h-5 w-5 hover:text-white cursor-pointer" />
-                  <Instagram className="h-5 w-5 hover:text-white cursor-pointer" />
+                  <a href="#" className="hover:text-white"><Github className="h-5 w-5" /></a>
+                  <a href="#" className="hover:text-white"><Linkedin className="h-5 w-5" /></a>
+                  <a href="#" className="hover:text-white"><Instagram className="h-5 w-5" /></a>
                 </div>
               </div>
             </div>
           </footer>
-        </LanguageProvider>
 
+        </LanguageProvider> {/* <--- VERIFIQUE SE ESTE FECHAMENTO EXISTIA */}
+      
       </body>
     </html>
   );
