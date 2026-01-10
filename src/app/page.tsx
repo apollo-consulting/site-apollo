@@ -1,5 +1,7 @@
 "use client";
 
+import Contact from "@/components/Contact";
+import About from "@/components/About";
 import Services from "@/components/Services";
 import Link from "next/link";
 import { ArrowRight, Code2, Database, Zap, ShieldCheck, Globe } from "lucide-react";
@@ -47,30 +49,13 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* --- SERVICES SECTION --- */}
+      {/* --- SECTIONS --- */}
       <Services />
-
-      {/* <section className="px-6 py-24 md:py-32 bg-slate-900/50">
-        <div className="mx-auto max-w-7xl">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 text-center"
-          >
-            <h2 className="text-3xl font-bold md:text-4xl">{t.services.title}</h2>
-            <p className="mt-4 text-slate-400">{t.services.subtitle}</p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            <ServiceCard icon={<Database className="h-8 w-8 text-blue-400" />} title={t.services.card1_title} description={t.services.card1_desc} />
-            <ServiceCard icon={<Zap className="h-8 w-8 text-cyan-400" />} title={t.services.card2_title} description={t.services.card2_desc} />
-            <ServiceCard icon={<Code2 className="h-8 w-8 text-indigo-400" />} title={t.services.card3_title} description={t.services.card3_desc} />
-          </div>
-        </div>
-      </section> */}
+      <About />
+      <Contact />
 
       {/* --- WHY APOLLO SECTION --- */}
+      {/*
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -97,6 +82,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      */}
     </div>
   );
 }
