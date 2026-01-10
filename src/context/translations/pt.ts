@@ -1,7 +1,7 @@
 export const pt = {
   // --- NAVEGADOR 👇 ---
   nav: {
-    home: "Início",
+    home: "Início1",
     about: "Quem Somos",
     portfolio: "Portfolio",
     contact: "Contato"
