@@ -5,6 +5,7 @@ FROM node:18-alpine AS base
 FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
+# Instala dependências (incluindo devDependencies necessárias para o build)
 RUN npm ci
 
 # 3. Builder
@@ -13,25 +14,25 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Desabilita telemetria durante o build
-ENV NEXT_TELEMETRY_DISABLED 1
+# Desabilita telemetria
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Roda o build do Next.js
+# --- AQUI É ONDE O ERRO ESTÁ ACONTECENDO ---
 RUN npm run build
 
 # 4. Runner (Production)
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copia apenas o necessário para rodar
+# Copia apenas o necessário para rodar (Standalone mode)
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
