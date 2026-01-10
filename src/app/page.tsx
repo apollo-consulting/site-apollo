@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { ArrowRight, Code2, Database, Zap, ShieldCheck, Globe } from "lucide-react";
 import * as motion from "framer-motion/client";
-import { useLanguage } from "@/context/LanguageContext"; // Importar o hook
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
-  const { t } = useLanguage(); // Pegar os textos traduzidos
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500 selection:text-white">
@@ -98,7 +98,7 @@ export default function Home() {
   );
 }
 
-// Sub-componentes
+// --- COMPONENTES AUXILIARES ---
 function ServiceCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
   return (
     <div className="group rounded-xl border border-slate-800 bg-slate-950 p-8 transition-colors hover:border-blue-500/50 hover:bg-slate-900">
@@ -111,4 +111,4 @@ function ServiceCard({ icon, title, description }: { icon: React.ReactNode, titl
 
 function FeatureItem({ text }: { text: string }) {
   return <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="h-5 w-5 text-blue-500" />{text}</li>;
-}"use client";
+}
