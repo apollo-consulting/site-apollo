@@ -1,20 +1,22 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { translations } from "@/utils/translations";
+// CORREÇÃO AQUI: Importar da mesma pasta (./translations) e não de utils
+import { translations } from "./translations"; 
 
 type Language = "pt" | "en";
 
 interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
-  t: typeof translations["en"]; // Define que 't' terá o formato dos nossos textos
+  // Aqui garantimos que o TypeScript entenda a estrutura do arquivo 'pt'
+  t: typeof translations["pt"]; 
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("pt"); // Começa em Português
+  const [language, setLanguage] = useState<Language>("pt");
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "pt" ? "en" : "pt"));

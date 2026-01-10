@@ -1,11 +1,11 @@
 "use client";
 
-export const dynamic = "force-dynamic";
+import Services from "@/components/Services";
 import Link from "next/link";
 import { ArrowRight, Code2, Database, Zap, ShieldCheck, Globe } from "lucide-react";
 import * as motion from "framer-motion/client";
 import { useLanguage } from "@/context/LanguageContext";
-
+export const dynamic = "force-dynamic";
 export default function Home() {
   const { t } = useLanguage();
 
@@ -48,7 +48,9 @@ export default function Home() {
       </section>
 
       {/* --- SERVICES SECTION --- */}
-      <section className="px-6 py-24 md:py-32 bg-slate-900/50">
+      <Services />
+
+      {/* <section className="px-6 py-24 md:py-32 bg-slate-900/50">
         <div className="mx-auto max-w-7xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +68,7 @@ export default function Home() {
             <ServiceCard icon={<Code2 className="h-8 w-8 text-indigo-400" />} title={t.services.card3_title} description={t.services.card3_desc} />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* --- WHY APOLLO SECTION --- */}
       <section className="px-6 py-24 md:py-32">
