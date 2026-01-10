@@ -6,7 +6,6 @@ RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-#TESTE
 # 2. Etapa de Construção (Usando Node 20)
 FROM node:20-alpine AS builder
 WORKDIR /app
@@ -17,7 +16,6 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Roda o build
-RUN rm -rf .next
 RUN npm run build
 
 # 3. Etapa de Produção (Usando Node 20)
