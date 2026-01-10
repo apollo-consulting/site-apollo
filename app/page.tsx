@@ -1,19 +1,15 @@
-"use client";
-//import { Metadata } from "next";
+import { Metadata } from "next";
 import Link from "next/link";
 // Importamos ícones da biblioteca Lucide
 import { ArrowRight, Code2, Database, Zap, ShieldCheck, Cpu, Globe } from "lucide-react";
 // Importamos componentes de animação (Client Side)
 import * as motion from "framer-motion/client";
 
-
 // --- SEO BÁSICO ---
-/*
 export const metadata: Metadata = {
   title: "Apollo | Data, Automation & Development",
   description: "Transforming businesses through intelligent data architecture, AI automation, and premium software development.",
 };
-*/
 
 export default function Home() {
   return (
