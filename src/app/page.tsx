@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import Contact from "@/components/Contact";
 import About from "@/components/About";
@@ -7,7 +8,6 @@ import Link from "next/link";
 import { ArrowRight, Code2, Database, Zap, ShieldCheck, Globe } from "lucide-react";
 import * as motion from "framer-motion/client";
 import { useLanguage } from "@/context/LanguageContext";
-export const dynamic = "force-dynamic";
 export default function Home() {
   const { t } = useLanguage();
 
