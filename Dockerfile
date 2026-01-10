@@ -1,23 +1,43 @@
-# 1. Base
-FROM node:20-alpine
+# 1. Base Image
+FROM node:18-alpine AS base
 
-# 2. Diretório de trabalho
+# 2. Dependencies
+FROM base AS deps
 WORKDIR /app
-
-# 3. Copia dependências
-COPY package*.json ./
-
-# 4. Instala dependências
+COPY package.json package-lock.json* ./
 RUN npm ci
 
-# 5. Copia o restante do projeto
+# 3. Builder
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# 6. Build do Next
+# Desabilita telemetria durante o build
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Roda o build do Next.js
 RUN npm run build
 
-# 7. Porta usada pelo Next
+# 4. Runner (Production)
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copia apenas o necessário para rodar
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 3000
 
-# 8. Start (MUITO IMPORTANTE)
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]
